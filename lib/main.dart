@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:greprestaurant/models/food_list.dart';
 import 'package:greprestaurant/pages/home_page.dart';
+import 'package:provider/provider.dart';
 
 const String APP_NAME = 'GREP RESTAURANT';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FoodList(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
