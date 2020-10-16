@@ -140,6 +140,19 @@ class _HomePageState extends State<HomePage> {
                       )
                   ],
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    MyButton(
+                      number: 0,
+                      withMargin: false,
+                      onClick: _handleClickButton,
+                    )
+                  ],
+                ),
               ],
             ),
           ),
