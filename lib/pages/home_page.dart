@@ -41,11 +41,13 @@ class _HomePageState extends State<HomePage> {
               textColor: Colors.white,
               fontSize: 16.0
           );
-          setState(() {
-            _inputPassword = '';
+
+          Future.delayed(Duration(milliseconds: 100), () {
+            setState(() {
+              _inputPassword = '';
+            });
           });
         }
-        return;
       }
     });
   }

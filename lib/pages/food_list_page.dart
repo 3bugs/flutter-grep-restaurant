@@ -52,6 +52,7 @@ class _FoodListPageState extends State<FoodListPage> {
             itemCount: foodList.list.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
                 margin: EdgeInsets.all(8.0),
                 elevation: 5.0,
                 shadowColor: Colors.black.withOpacity(0.2),
