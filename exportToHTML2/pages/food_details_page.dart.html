@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>food_details_page.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+.ls0 { height: 1px; border-width: 0; color: #c0c0c0; background-color:#c0c0c0}
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#d4d380">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+food_details_page.dart</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a>import <span class="s1">'package:flutter/material.dart'</span>;
+<a name="l2"><span class="ln">2    </span></a>import <span class="s1">'package:google_fonts/google_fonts.dart'</span>;
+<a name="l3"><span class="ln">3    </span></a>import <span class="s1">'package:greprestaurant/main.dart'</span>;
+<a name="l4"><span class="ln">4    </span></a>import <span class="s1">'package:greprestaurant/models/food_item.dart'</span>;
+<a name="l5"><span class="ln">5    </span></a>import <span class="s1">'package:greprestaurant/models/food_list.dart'</span>;
+<a name="l6"><span class="ln">6    </span></a>import <span class="s1">'package:provider/provider.dart'</span>;
+<a name="l7"><span class="ln">7    </span></a>
+<a name="l8"><span class="ln">8    </span></a><span class="s2">class </span>FoodDetailsPage <span class="s2">extends </span>StatefulWidget {
+<a name="l9"><span class="ln">9    </span></a>  <span class="s2">final </span>int foodItemIndex;
+<a name="l10"><span class="ln">10   </span></a><hr class="ls0"><a name="l11"><span class="ln">11   </span></a>  FoodDetailsPage({@required <span class="s2">this</span>.foodItemIndex});
+<a name="l12"><span class="ln">12   </span></a><hr class="ls0"><a name="l13"><span class="ln">13   </span></a>  @override
+<a name="l14"><span class="ln">14   </span></a>  _FoodDetailsPageState createState() =&gt; _FoodDetailsPageState();
+<a name="l15"><span class="ln">15   </span></a>}
+<a name="l16"><span class="ln">16   </span></a>
+<a name="l17"><span class="ln">17   </span></a><span class="s2">class </span>_FoodDetailsPageState <span class="s2">extends </span>State&lt;FoodDetailsPage&gt; {
+<a name="l18"><span class="ln">18   </span></a>  <span class="s2">void </span>_handleChangeItemCount(int itemChange) {
+<a name="l19"><span class="ln">19   </span></a>    FoodList foodList = Provider.of&lt;FoodList&gt;(context, listen: <span class="s2">false</span>);
+<a name="l20"><span class="ln">20   </span></a>    foodList.changeItemCount(widget.foodItemIndex, itemChange);
+<a name="l21"><span class="ln">21   </span></a>  }
+<a name="l22"><span class="ln">22   </span></a><hr class="ls0"><a name="l23"><span class="ln">23   </span></a>  @override
+<a name="l24"><span class="ln">24   </span></a>  Widget build(BuildContext context) {
+<a name="l25"><span class="ln">25   </span></a>    <span class="s2">return </span>Consumer&lt;FoodList&gt;(
+<a name="l26"><span class="ln">26   </span></a>      builder: (context, foodList, child) {
+<a name="l27"><span class="ln">27   </span></a>        FoodItem foodItem = foodList.list[widget.foodItemIndex];
+<a name="l28"><span class="ln">28   </span></a>
+<a name="l29"><span class="ln">29   </span></a>        <span class="s2">return </span>Scaffold(
+<a name="l30"><span class="ln">30   </span></a>          appBar: AppBar(
+<a name="l31"><span class="ln">31   </span></a>            title: Text(APP_NAME),
+<a name="l32"><span class="ln">32   </span></a>          ),
+<a name="l33"><span class="ln">33   </span></a>          body: Column(
+<a name="l34"><span class="ln">34   </span></a>            children: &lt;Widget&gt;[
+<a name="l35"><span class="ln">35   </span></a>              AspectRatio(
+<a name="l36"><span class="ln">36   </span></a>                aspectRatio: <span class="s3">3 </span>/ <span class="s3">2</span>,
+<a name="l37"><span class="ln">37   </span></a>                child: Image(
+<a name="l38"><span class="ln">38   </span></a>                  image: NetworkImage(foodItem.image),
+<a name="l39"><span class="ln">39   </span></a>                  fit: BoxFit.cover,
+<a name="l40"><span class="ln">40   </span></a>                ),
+<a name="l41"><span class="ln">41   </span></a>              ),
+<a name="l42"><span class="ln">42   </span></a>              Expanded(
+<a name="l43"><span class="ln">43   </span></a>                child: Container(
+<a name="l44"><span class="ln">44   </span></a>                  padding: EdgeInsets.all(<span class="s3">16.0</span>),
+<a name="l45"><span class="ln">45   </span></a>                  child: Column(
+<a name="l46"><span class="ln">46   </span></a>                    crossAxisAlignment: CrossAxisAlignment.stretch,
+<a name="l47"><span class="ln">47   </span></a>                    children: &lt;Widget&gt;[
+<a name="l48"><span class="ln">48   </span></a>                      Text(
+<a name="l49"><span class="ln">49   </span></a>                        <span class="s1">'ชื่อเมนู: </span>${foodItem.name}<span class="s1">'</span>,
+<a name="l50"><span class="ln">50   </span></a>                        style: GoogleFonts.prompt(fontSize: <span class="s3">20.0</span>),
+<a name="l51"><span class="ln">51   </span></a>                      ),
+<a name="l52"><span class="ln">52   </span></a>                      Text(
+<a name="l53"><span class="ln">53   </span></a>                        <span class="s1">'ราคา: </span>${foodItem.price.toString()} <span class="s1">บาท'</span>,
+<a name="l54"><span class="ln">54   </span></a>                        style: GoogleFonts.prompt(fontSize: <span class="s3">20.0</span>),
+<a name="l55"><span class="ln">55   </span></a>                      ),
+<a name="l56"><span class="ln">56   </span></a>                      Expanded(
+<a name="l57"><span class="ln">57   </span></a>                        child: Container(
+<a name="l58"><span class="ln">58   </span></a>                          child: Row(
+<a name="l59"><span class="ln">59   </span></a>                            mainAxisAlignment: MainAxisAlignment.center,
+<a name="l60"><span class="ln">60   </span></a>                            crossAxisAlignment: CrossAxisAlignment.center,
+<a name="l61"><span class="ln">61   </span></a>                            children: &lt;Widget&gt;[
+<a name="l62"><span class="ln">62   </span></a>                              RaisedButton(
+<a name="l63"><span class="ln">63   </span></a>                                onPressed: foodItem.itemCount &gt; <span class="s3">0</span>
+<a name="l64"><span class="ln">64   </span></a>                                    ? () =&gt; _handleChangeItemCount(-<span class="s3">1</span>)
+<a name="l65"><span class="ln">65   </span></a>                                    : <span class="s2">null</span>,
+<a name="l66"><span class="ln">66   </span></a>                                child: <span class="s2">const </span>Text(<span class="s1">'-'</span>, style: TextStyle(fontSize: <span class="s3">20</span>)),
+<a name="l67"><span class="ln">67   </span></a>                              ),
+<a name="l68"><span class="ln">68   </span></a>                              Padding(
+<a name="l69"><span class="ln">69   </span></a>                                padding: <span class="s2">const </span>EdgeInsets.all(<span class="s3">15.0</span>),
+<a name="l70"><span class="ln">70   </span></a>                                child: Text(
+<a name="l71"><span class="ln">71   </span></a>                                  foodItem.itemCount.toString(),
+<a name="l72"><span class="ln">72   </span></a>                                  style: GoogleFonts.prompt(fontSize: <span class="s3">20.0</span>),
+<a name="l73"><span class="ln">73   </span></a>                                ),
+<a name="l74"><span class="ln">74   </span></a>                              ),
+<a name="l75"><span class="ln">75   </span></a>                              RaisedButton(
+<a name="l76"><span class="ln">76   </span></a>                                onPressed: () =&gt; _handleChangeItemCount(<span class="s3">1</span>),
+<a name="l77"><span class="ln">77   </span></a>                                child: <span class="s2">const </span>Text(<span class="s1">'+'</span>, style: TextStyle(fontSize: <span class="s3">20</span>)),
+<a name="l78"><span class="ln">78   </span></a>                              ),
+<a name="l79"><span class="ln">79   </span></a>                            ],
+<a name="l80"><span class="ln">80   </span></a>                          ),
+<a name="l81"><span class="ln">81   </span></a>                        ),
+<a name="l82"><span class="ln">82   </span></a>                      ),
+<a name="l83"><span class="ln">83   </span></a>                    ],
+<a name="l84"><span class="ln">84   </span></a>                  ),
+<a name="l85"><span class="ln">85   </span></a>                ),
+<a name="l86"><span class="ln">86   </span></a>              ),
+<a name="l87"><span class="ln">87   </span></a>            ],
+<a name="l88"><span class="ln">88   </span></a>          ),
+<a name="l89"><span class="ln">89   </span></a>        );
+<a name="l90"><span class="ln">90   </span></a>      },
+<a name="l91"><span class="ln">91   </span></a>    );
+<a name="l92"><span class="ln">92   </span></a>  }
+<a name="l93"><span class="ln">93   </span></a>}
+<a name="l94"><span class="ln">94   </span></a></pre>
+</body>
+</html>
